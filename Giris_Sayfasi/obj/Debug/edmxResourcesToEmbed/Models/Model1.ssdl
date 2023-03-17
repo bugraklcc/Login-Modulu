@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Giris_SayfasiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblKullanici">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="KullaniciAd" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+    <Property Name="GecerliFlg" Type="bit" />
+    <Property Name="OlusturanAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="OlusturmaTarihi" Type="datetime" />
+    <Property Name="GuncelleyenAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="GuncellemeTarihi" Type="datetime" />
+    <Property Name="Rol" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblKullaniciRol">
+    <Key>
+      <PropertyRef Name="KullaniciRolID" />
+    </Key>
+    <Property Name="KullaniciRolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RolID" Type="int" />
+    <Property Name="KullaniciID" Type="int" />
+    <Property Name="GecerliFlg" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblMail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Alici" Type="nvarchar" MaxLength="90" Nullable="false" />
+    <Property Name="GecerliFlg" Type="bit" />
+    <Property Name="Konu" Type="nvarchar" MaxLength="100" />
+    <Property Name="Govde" Type="ntext" Nullable="false" />
+    <Property Name="DurumFlg" Type="tinyint" />
+    <Property Name="GondermeTarihi" Type="datetime" />
+    <Property Name="HataMesaji" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Credate" Type="datetime" />
+    <Property Name="Creuser" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tblRol">
+    <Key>
+      <PropertyRef Name="RolID" />
+    </Key>
+    <Property Name="RolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RolAdi" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_tblKullaniciRol_tblKullanici1">
+    <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="1" />
+    <End Role="tblKullaniciRol" Type="Self.tblKullaniciRol" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tblKullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblKullaniciRol">
+        <PropertyRef Name="KullaniciRolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblKullaniciRol_tblRol">
+    <End Role="tblRol" Type="Self.tblRol" Multiplicity="0..1" />
+    <End Role="tblKullaniciRol" Type="Self.tblKullaniciRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRol">
+        <PropertyRef Name="RolID" />
+      </Principal>
+      <Dependent Role="tblKullaniciRol">
+        <PropertyRef Name="RolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Giris_SayfasiModelStoreContainer">
+    <EntitySet Name="tblKullanici" EntityType="Self.tblKullanici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblKullaniciRol" EntityType="Self.tblKullaniciRol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblMail" EntityType="Self.tblMail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRol" EntityType="Self.tblRol" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tblKullaniciRol_tblKullanici1" Association="Self.FK_tblKullaniciRol_tblKullanici1">
+      <End Role="tblKullanici" EntitySet="tblKullanici" />
+      <End Role="tblKullaniciRol" EntitySet="tblKullaniciRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblKullaniciRol_tblRol" Association="Self.FK_tblKullaniciRol_tblRol">
+      <End Role="tblRol" EntitySet="tblRol" />
+      <End Role="tblKullaniciRol" EntitySet="tblKullaniciRol" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

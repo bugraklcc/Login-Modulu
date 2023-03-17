@@ -1,0 +1,23 @@
+﻿@model Giris_Sayfasi.Models.tblKullanici
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<h3>@ViewBag.uyari</h3>
+@using (Html.BeginForm("Sifrereset", "Account", FormMethod.Post))
+{
+    <br />
+    <br />
+    <div class="container">
+        <div class="form-group">
+            <div class="form-group">
+                <input type="email" name="Email"  placeholder="E-mail adresiniz" />
+
+            </div>
+            <div class="form-group">
+                <input type="submit" name="Şifreyi sıfırla" class="btn btn-success" />
+
+            </div>
+        </div>
+    </div>
+}

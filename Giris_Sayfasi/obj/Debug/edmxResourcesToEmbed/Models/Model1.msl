@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Giris_SayfasiModelStoreContainer" CdmEntityContainer="Giris_SayfasiEntities2">
+    <EntitySetMapping Name="tblKullaniciRol">
+      <EntityTypeMapping TypeName="Giris_SayfasiModel.tblKullaniciRol">
+        <MappingFragment StoreEntitySet="tblKullaniciRol">
+          <ScalarProperty Name="KullaniciRolID" ColumnName="KullaniciRolID" />
+          <ScalarProperty Name="RolID" ColumnName="RolID" />
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+          <ScalarProperty Name="GecerliFlg" ColumnName="GecerliFlg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRol">
+      <EntityTypeMapping TypeName="Giris_SayfasiModel.tblRol">
+        <MappingFragment StoreEntitySet="tblRol">
+          <ScalarProperty Name="RolID" ColumnName="RolID" />
+          <ScalarProperty Name="RolAdi" ColumnName="RolAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblKullanici">
+      <EntityTypeMapping TypeName="Giris_SayfasiModel.tblKullanici">
+        <MappingFragment StoreEntitySet="tblKullanici">
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+          <ScalarProperty Name="GuncellemeTarihi" ColumnName="GuncellemeTarihi" />
+          <ScalarProperty Name="GuncelleyenAdi" ColumnName="GuncelleyenAdi" />
+          <ScalarProperty Name="OlusturmaTarihi" ColumnName="OlusturmaTarihi" />
+          <ScalarProperty Name="OlusturanAdi" ColumnName="OlusturanAdi" />
+          <ScalarProperty Name="GecerliFlg" ColumnName="GecerliFlg" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="KullaniciAd" ColumnName="KullaniciAd" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMail">
+      <EntityTypeMapping TypeName="Giris_SayfasiModel.tblMail">
+        <MappingFragment StoreEntitySet="tblMail">
+          <ScalarProperty Name="Creuser" ColumnName="Creuser" />
+          <ScalarProperty Name="Credate" ColumnName="Credate" />
+          <ScalarProperty Name="HataMesaji" ColumnName="HataMesaji" />
+          <ScalarProperty Name="GondermeTarihi" ColumnName="GondermeTarihi" />
+          <ScalarProperty Name="DurumFlg" ColumnName="DurumFlg" />
+          <ScalarProperty Name="Govde" ColumnName="Govde" />
+          <ScalarProperty Name="Konu" ColumnName="Konu" />
+          <ScalarProperty Name="GecerliFlg" ColumnName="GecerliFlg" />
+          <ScalarProperty Name="Alici" ColumnName="Alici" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

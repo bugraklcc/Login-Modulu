@@ -1,0 +1,74 @@
+﻿@model Giris_Sayfasi.Models.mdlRegister
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <br />
+        <h2>Kayıt ol</h2>
+        <div class="form-group col-md-3 container">
+            @using (Ajax.BeginForm(new AjaxOptions() { HttpMethod = "POST", OnComplete = "istekTamamlandi" }))
+            {
+                <label>Ad</label>
+                @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+                <br />
+
+                <label>Soyad</label>
+                <input type="text" name="Soyad" class="form-control" required />
+                <br />
+
+                <label>Email</label>
+                <input type="text" name="Email" class="form-control" required />
+                <br />
+
+                <label>E-mail Tekrar</label>
+                @Html.TextBoxFor(x => x.Emailtekrar, new { placeholder = "E-mail tekrar", @class = "form-control" })
+                <br />
+
+                <label>Kullanici Ad</label>
+                <input type="text" name="KullaniciAd" class="form-control" required />
+                <br />
+
+                <label>Şifre</label>
+                <input type="password" name="Sifre" class="form-control" required />
+                <br />
+
+                <label>Şifre Tekrar</label>
+                @Html.TextBoxFor(x => x.Sifretekrar, new { @class = "form-control", @type = "password" })
+
+                <br />
+
+                <button class="btn btn-secondary">Kayıt Ol</button>
+            }
+        </div>
+    </div>
+
+    <script>
+        var mydata = null;
+        function istekTamamlandi(e) {
+
+            var data = e.responseJSON;
+
+            if (data.Status == "OK") {
+                window.location = '@Url.Action("Login", "Account")';
+            } else {
+                swal("Hatalı!", data.ErrorMessage, "error");
+            }
+        }
+    </script>
+</body>
+</html>
+

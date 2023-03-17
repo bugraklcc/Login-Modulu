@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Giris_SayfasiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblKullaniciRol">
+    <Key>
+      <PropertyRef Name="KullaniciRolID" />
+    </Key>
+    <Property Name="KullaniciRolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RolID" Type="Int32" />
+    <Property Name="KullaniciID" Type="Int32" />
+    <Property Name="GecerliFlg" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tblRol" Relationship="Self.FK_tblKullaniciRol_tblRol" FromRole="tblKullaniciRol" ToRole="tblRol" />
+    <NavigationProperty Name="tblKullanici" Relationship="Giris_SayfasiModel.FK_tblKullaniciRol_tblKullanici1" FromRole="tblKullaniciRol" ToRole="tblKullanici" />
+  </EntityType>
+  <EntityType Name="tblRol">
+    <Key>
+      <PropertyRef Name="RolID" />
+    </Key>
+    <Property Name="RolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RolAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblKullaniciRol" Relationship="Self.FK_tblKullaniciRol_tblRol" FromRole="tblRol" ToRole="tblKullaniciRol" />
+  </EntityType>
+  <Association Name="FK_tblKullaniciRol_tblRol">
+    <End Role="tblRol" Type="Self.tblRol" Multiplicity="0..1" />
+    <End Role="tblKullaniciRol" Type="Self.tblKullaniciRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRol">
+        <PropertyRef Name="RolID" />
+      </Principal>
+      <Dependent Role="tblKullaniciRol">
+        <PropertyRef Name="RolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Giris_SayfasiEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblKullaniciRol" EntityType="Self.tblKullaniciRol" />
+    <EntitySet Name="tblRol" EntityType="Self.tblRol" />
+    <AssociationSet Name="FK_tblKullaniciRol_tblRol" Association="Self.FK_tblKullaniciRol_tblRol">
+      <End Role="tblRol" EntitySet="tblRol" />
+      <End Role="tblKullaniciRol" EntitySet="tblKullaniciRol" />
+    </AssociationSet>
+    <EntitySet Name="tblKullanici" EntityType="Giris_SayfasiModel.tblKullanici" />
+    <AssociationSet Name="FK_tblKullaniciRol_tblKullanici1" Association="Giris_SayfasiModel.FK_tblKullaniciRol_tblKullanici1">
+      <End Role="tblKullanici" EntitySet="tblKullanici" />
+      <End Role="tblKullaniciRol" EntitySet="tblKullaniciRol" />
+    </AssociationSet>
+    <EntitySet Name="tblMail" EntityType="Giris_SayfasiModel.tblMail" />
+  </EntityContainer>
+  <EntityType Name="tblKullanici">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GecerliFlg" Type="Boolean" />
+    <Property Name="OlusturanAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OlusturmaTarihi" Type="DateTime" Precision="3" />
+    <Property Name="GuncelleyenAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GuncellemeTarihi" Type="DateTime" Precision="3" />
+    <Property Name="Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblKullaniciRol" Relationship="Giris_SayfasiModel.FK_tblKullaniciRol_tblKullanici1" FromRole="tblKullanici" ToRole="tblKullaniciRol" />
+  </EntityType>
+  <Association Name="FK_tblKullaniciRol_tblKullanici1">
+    <End Type="Giris_SayfasiModel.tblKullanici" Role="tblKullanici" Multiplicity="1" />
+    <End Type="Giris_SayfasiModel.tblKullaniciRol" Role="tblKullaniciRol" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tblKullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblKullaniciRol">
+        <PropertyRef Name="KullaniciRolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tblMail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Alici" Type="String" Nullable="false" MaxLength="90" FixedLength="false" Unicode="true" />
+    <Property Name="GecerliFlg" Type="Boolean" />
+    <Property Name="Konu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Govde" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DurumFlg" Type="Byte" />
+    <Property Name="GondermeTarihi" Type="DateTime" Precision="3" />
+    <Property Name="HataMesaji" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Credate" Type="DateTime" Precision="3" />
+    <Property Name="Creuser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>
